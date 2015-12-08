@@ -285,11 +285,33 @@ function regerateData() {
 											var energyIndex = animalData[increment].energyUnitIndex;
 											if(dataType==0){
 												var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
+												var animalNfg;
+												if(document.getElementById(AnimalIdNfg).value == "N.A."){
+													animalNfg=0;
+												}
+												else{
+													animalNfg=document.getElementById(AnimalIdNfg).value;
+												}
 												var AnimalIdCount=(animalIndex+1).toString()+"animalCount";
+												var anmCount;
+												if(document.getElementById(AnimalIdCount).value == "N.A."){
+													anmCount=0;
+												}
+												else{
+													anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+												}
+
 												var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
+												var energyUI;
+												if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+													energyUI=0;
+												}
+												else{
+													energyUI=document.getElementById(AnimalIdEnergy).value;
+												}
+												
 												nutritionEnergy = nutritionEnergy
-														+ (document.getElementById(AnimalIdCount).value.replace(/\,/g,'')
-																* (document.getElementById(AnimalIdNfg).value/100) * document.getElementById(AnimalIdEnergy).value);
+														+ (anmCount * (animalNfg/100) * energyUI);
 												}
 											
 											else{
@@ -322,10 +344,33 @@ function regerateData() {
 												var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 												var AnimalIdCount=(animalIndex+1).toString()+"animalCount";
 												var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
+												var anmCount;
+												if(document.getElementById(AnimalIdCount).value == "N.A."){
+													anmCount=0;
+												}
+												else{
+													anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+												}
+												
+												var animalNfg;
+												if(document.getElementById(AnimalIdNfg).value == "N.A."){
+													animalNfg=0;
+												}
+												else{
+													animalNfg=document.getElementById(AnimalIdNfg).value;
+												}
+												
+												var proteinUI;
+												if(document.getElementById(AnimalIdProtein).value == "N.A."){
+													proteinUI=0;
+												}
+												else{
+													proteinUI=document.getElementById(AnimalIdProtein).value;
+												}
+												
 												
 													nutritionProtein = nutritionProtein
-															+ (document.getElementById(AnimalIdCount).value.replace(/\,/g,'')
-																	* (document.getElementById(AnimalIdNfg).value/100) * document.getElementById(AnimalIdProtein).value);
+															+ (anmCount	* (animalNfg/100) * proteinUI);
 
 												}
 											else{
@@ -463,16 +508,50 @@ function regerateData() {
 						var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
 						var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
 						var FeedDemand=(animalIndex+1).toString()+"feedDemand";
-						var ProteinValue = document.getElementById(AnimalIdProtein).value;						
-						var NfgValue = document.getElementById(AnimalIdNfg).value;
-						var CountValue = document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-						var EnergyValue = document.getElementById(AnimalIdEnergy).value;
+						
+						//var ProteinValue = document.getElementById(AnimalIdProtein).value;		
+						var ProteinValue;
+						if(document.getElementById(AnimalIdProtein).value == "N.A."){
+							ProteinValue=0;
+						}
+						else{
+							ProteinValue=document.getElementById(AnimalIdProtein).value;
+						}		
+						
+						// var NfgValue = document.getElementById(AnimalIdNfg).value;
+						var NfgValue;
+						if(document.getElementById(AnimalIdNfg).value == "N.A."){
+							NfgValue=0;
+						}
+						else{
+							NfgValue=document.getElementById(AnimalIdNfg).value;
+						}
+						
+						// var EnergyValue = document.getElementById(AnimalIdEnergy).value;
+						var EnergyValue;
+						if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+							EnergyValue=0;
+						}
+						else{
+							EnergyValue=document.getElementById(AnimalIdEnergy).value;
+						}
+						
+						
+						var anmCount;
+						if(document.getElementById(AnimalIdCount).value == "N.A."){
+							anmCount=0;
+						}
+						else{
+							anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+						}						
+						
+						
 						
 							if (latestYear == animalData[increment].year) {
 									var nutritionEnergy = 0;
 									var nutritionProtein = 0;
 									
-							if(CountValue!=animalData[increment].animalCount){
+							if(anmCount!=animalData[increment].animalCount){
 								var x = document.getElementById(AnimalIdCount);
 								x.style.color = '#E66C2C';
 							}
@@ -495,7 +574,7 @@ function regerateData() {
 								if(unitIndx=="Energy"){
 									
 									nutritionEnergy = nutritionEnergy
-												+ ((NfgValue * CountValue * EnergyValue * 35600) / (propertyValue*1000000));
+												+ ((NfgValue * anmCount * EnergyValue * 35600) / (propertyValue*1000000));
 						
 									total=total+ formatNumberRoundOff(nutritionEnergy/100);
 									
@@ -509,7 +588,7 @@ function regerateData() {
 								else{
 					
 								nutritionProtein = nutritionProtein
-												+ ((NfgValue * CountValue * ProteinValue * 0.319) / (propertyValue*1000) );
+												+ ((NfgValue * anmCount * ProteinValue * 0.319) / (propertyValue*1000) );
 									total=total+formatNumberRoundOff(nutritionProtein/100);			
 									nutritionProtein = formatNumber(formatNumberRoundOff(nutritionProtein/100));	
 									
@@ -565,6 +644,7 @@ function regerateData() {
 		}
 				
 		var arrYears = ${yearList};
+		
 		if (unitIndx == "Energy") {
 			var jsonData = makeEnergyJson(propertyValue);
 		} else {
@@ -1510,16 +1590,41 @@ function showTable(previousYear,latestYear){
 							var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
 							var anmCount;
 							if(document.getElementById(AnimalIdCount).value == "N.A."){
-								alert("inside");
-								var anmCount=0;
+								anmCount=0;
 							}
 							else{
 								anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
 							}
 							//var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-							var nfg=document.getElementById(AnimalIdNfg).value;
-							var energy=document.getElementById(AnimalIdEnergy).value;
-							var protein=document.getElementById(AnimalIdProtein).value;
+							
+							//var nfg=document.getElementById(AnimalIdNfg).value;
+							//var energy=document.getElementById(AnimalIdEnergy).value;
+							//var protein=document.getElementById(AnimalIdProtein).value; 
+							
+							var nfg;
+							if(document.getElementById(AnimalIdNfg).value == "N.A."){
+								nfg=0;
+							}
+							else{
+								nfg=document.getElementById(AnimalIdNfg).value;
+							}
+
+							var energy;
+							if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+								energy=0;
+							}
+							else{
+								energy=document.getElementById(AnimalIdEnergy).value;
+							}
+							
+							
+							var protein;
+							if(document.getElementById(AnimalIdProtein).value == "N.A."){
+								protein=0;
+							}
+							else{
+								protein=document.getElementById(AnimalIdProtein).value;
+							}
 							animalCountArray.push(anmCount);
 							nonForageRateArray.push(nfg);
 							energyUnitIndexArray.push(energy);
@@ -2083,10 +2188,44 @@ function checkForZero(num){
 				var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 				var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
 				var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
-				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-				var nfg=document.getElementById(AnimalIdNfg).value;
-				var energy=document.getElementById(AnimalIdEnergy).value;
-				var protein=document.getElementById(AnimalIdProtein).value;
+			//	var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				var anmCount;
+				if(document.getElementById(AnimalIdCount).value == "N.A."){
+					anmCount=0;
+				}
+				else{
+					anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				}				
+				
+				
+				//var nfg=document.getElementById(AnimalIdNfg).value;
+				//var energy=document.getElementById(AnimalIdEnergy).value;
+				//var protein=document.getElementById(AnimalIdProtein).value;
+				
+				var nfg;
+				if(document.getElementById(AnimalIdNfg).value == "N.A."){
+					nfg=0;
+				}
+				else{
+					nfg=document.getElementById(AnimalIdNfg).value;
+				}
+
+				var energy;
+				if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+					energy=0;
+				}
+				else{
+					energy=document.getElementById(AnimalIdEnergy).value;
+				}
+				
+				var protein;
+				if(document.getElementById(AnimalIdProtein).value == "N.A."){
+					protein=0;
+				}
+				else{
+					protein=document.getElementById(AnimalIdProtein).value;
+				}
+				
 				animalCountArray.push(anmCount);
 				nonForageRateArray.push(nfg);
 				energyUnitIndexArray.push(energy);
@@ -2605,9 +2744,34 @@ function checkForZero(num){
 				var AnimalIdCount=(animalIndex+1).toString()+"animalCount";
 				var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 				var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
-				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-				var nfg=document.getElementById(AnimalIdNfg).value;
-				var protein=document.getElementById(AnimalIdProtein).value;
+			//	var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				var anmCount;
+				if(document.getElementById(AnimalIdCount).value == "N.A."){
+					anmCount=0;
+				}
+				else{
+					anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				}				
+				
+				//var nfg=document.getElementById(AnimalIdNfg).value;
+				//var protein=document.getElementById(AnimalIdProtein).value;
+				
+				var nfg;
+				if(document.getElementById(AnimalIdNfg).value == "N.A."){
+					nfg=0;
+				}
+				else{
+					nfg=document.getElementById(AnimalIdNfg).value;
+				}
+
+				var protein;
+				if(document.getElementById(AnimalIdProtein).value == "N.A."){
+					protein=0;
+				}
+				else{
+					protein=document.getElementById(AnimalIdProtein).value;
+				}
+				
 				animalCountArray.push(anmCount);
 				nonForageRateArray.push(nfg);
 				proteinUnitIndexArray.push(protein);
@@ -2909,12 +3073,23 @@ function checkForZero(num){
 
 		var myarray = [];
 		var arrayLen = resultArray.length;
-		for ( var i = 0; i < arrayLen; i = i + 5) {
+		for ( var i = 0; i < arrayLen; i = i + 24) {
 
 			var item = {
 				"name" : resultArray[i],
 				"data" : [ resultArray[i + 1], resultArray[i + 2],
-						resultArray[i + 3], resultArray[i + 4] ]
+						resultArray[i + 3], resultArray[i + 4] ,
+						resultArray[i + 5], resultArray[i + 6] ,
+						resultArray[i + 7], resultArray[i + 8] ,
+						resultArray[i + 9], resultArray[i + 10] ,
+						resultArray[i + 11], resultArray[i + 12] ,
+						resultArray[i + 13], resultArray[i + 14] ,
+						resultArray[i + 15], resultArray[i + 16] ,
+						resultArray[i + 17], resultArray[i + 18] ,
+						resultArray[i + 19], resultArray[i + 20] ,
+						resultArray[i + 21], resultArray[i + 22] ,
+						resultArray[i + 23]
+						]
 
 			};
 
@@ -2969,9 +3144,33 @@ function checkForZero(num){
 				var AnimalIdCount=(animalIndex+1).toString()+"animalCount";
 				var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 				var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
-				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-				var nfg=document.getElementById(AnimalIdNfg).value;
-				var energy=document.getElementById(AnimalIdEnergy).value;
+				//var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				var anmCount;
+				if(document.getElementById(AnimalIdCount).value == "N.A."){
+					anmCount=0;
+				}
+				else{
+					anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				}
+				//var nfg=document.getElementById(AnimalIdNfg).value;
+				//var energy=document.getElementById(AnimalIdEnergy).value;
+				
+				var nfg;
+				if(document.getElementById(AnimalIdNfg).value == "N.A."){
+					nfg=0;
+				}
+				else{
+					nfg=document.getElementById(AnimalIdNfg).value;
+				}
+
+				var energy;
+				if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+					energy=0;
+				}
+				else{
+					energy=document.getElementById(AnimalIdEnergy).value;
+				}
+				
 				animalCountArray.push(anmCount);
 				nonForageRateArray.push(nfg);
 				energyUnitIndexArray.push(energy);
@@ -3240,6 +3439,7 @@ function checkForZero(num){
 				}
 				var v = nutritionEnergy  + aquaNutritionEnergy * 1;
 				v = formatNumberRoundOff(v);
+				
 				resultArray.push(v);
 			}
 		
@@ -3282,18 +3482,31 @@ function checkForZero(num){
 			}
 			var v = nutritionEnergy * 1 + aquaNutritionEnergy * 1;
 			v = formatNumberRoundOff(v);
+		
 			resultArray.push(v);
 		}
-
+		
+		
 
 		var myarray = [];
 		var arrayLen = resultArray.length;
-		for ( var i = 0; i < arrayLen; i = i + 5) {
+		for ( var i = 0; i < arrayLen; i = i + 24) {
 
 			var item = {
 				"name" : resultArray[i],
 				"data" : [ resultArray[i + 1], resultArray[i + 2],
-						resultArray[i + 3], resultArray[i + 4] ]
+						resultArray[i + 3], resultArray[i + 4] ,
+						resultArray[i + 5], resultArray[i + 6] ,
+						resultArray[i + 7], resultArray[i + 8] ,
+						resultArray[i + 9], resultArray[i + 10] ,
+						resultArray[i + 11], resultArray[i + 12] ,
+						resultArray[i + 13], resultArray[i + 14] ,
+						resultArray[i + 15], resultArray[i + 16] ,
+						resultArray[i + 17], resultArray[i + 18] ,
+						resultArray[i + 19], resultArray[i + 20] ,
+						resultArray[i + 21], resultArray[i + 22] ,
+						resultArray[i + 23]
+						]
 
 			};
 
@@ -3363,10 +3576,42 @@ function checkForZero(num){
 				var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 				var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
 				var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
-				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-				var nfg=document.getElementById(AnimalIdNfg).value;
-				var energy=document.getElementById(AnimalIdEnergy).value;
-				var protein=document.getElementById(AnimalIdProtein).value;
+//				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				var anmCount;
+				if(document.getElementById(AnimalIdCount).value == "N.A."){
+					anmCount=0;
+				}
+				else{
+					anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				}				
+				//var nfg=document.getElementById(AnimalIdNfg).value;
+				//var energy=document.getElementById(AnimalIdEnergy).value;
+				//var protein=document.getElementById(AnimalIdProtein).value;
+				
+				var nfg;
+				if(document.getElementById(AnimalIdNfg).value == "N.A."){
+					nfg=0;
+				}
+				else{
+					nfg=document.getElementById(AnimalIdNfg).value;
+				}
+
+				var energy;
+				if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+					energy=0;
+				}
+				else{
+					energy=document.getElementById(AnimalIdEnergy).value;
+				}
+				
+				var protein;
+				if(document.getElementById(AnimalIdProtein).value == "N.A."){
+					protein=0;
+				}
+				else{
+					protein=document.getElementById(AnimalIdProtein).value;
+				}
+				
 				
 				animalCountArray.push(anmCount);
 				nonForageRateArray.push(nfg);
@@ -3631,10 +3876,43 @@ window.location.href = getContextPath()
 				var AnimalIdNfg=(animalIndex+1).toString()+"animalNfg";
 				var AnimalIdEnergy=(animalIndex+1).toString()+"animalEnergy";
 				var AnimalIdProtein=(animalIndex+1).toString()+"animalProtein";
-				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
-				var nfg=document.getElementById(AnimalIdNfg).value;
-				var energy=document.getElementById(AnimalIdEnergy).value;
-				var protein=document.getElementById(AnimalIdProtein).value;
+//				var anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				var anmCount;
+				if(document.getElementById(AnimalIdCount).value == "N.A."){
+					anmCount=0;
+				}
+				else{
+					anmCount=document.getElementById(AnimalIdCount).value.replace(/\,/g,'');
+				}
+				//var nfg=document.getElementById(AnimalIdNfg).value;
+				//var energy=document.getElementById(AnimalIdEnergy).value;
+				//var protein=document.getElementById(AnimalIdProtein).value;
+				
+				var nfg;
+				if(document.getElementById(AnimalIdNfg).value == "N.A."){
+					nfg=0;
+				}
+				else{
+					nfg=document.getElementById(AnimalIdNfg).value;
+				}
+
+				var energy;
+				if(document.getElementById(AnimalIdEnergy).value == "N.A."){
+					energy=0;
+				}
+				else{
+					energy=document.getElementById(AnimalIdEnergy).value;
+				}
+				
+				var protein;
+				if(document.getElementById(AnimalIdProtein).value == "N.A."){
+					protein=0;
+				}
+				else{
+					protein=document.getElementById(AnimalIdProtein).value;
+				}
+				
+				
 				animalCountArray.push(anmCount);
 				nonForageRateArray.push(nfg);
 				energyUnitIndexArray.push(energy);
@@ -4262,7 +4540,7 @@ window.location.href = getContextPath()
 
 							
 							var perChngAnmCountList;
-							console.log(perChngAnmCount);
+							
 							perChngAnmCountList=perChngAnmCount.split(":");
 							var perChngNonForgRatList;
 							perChngNonForgRatList=perChngNonForgRat.split(":");
@@ -4466,8 +4744,6 @@ window.location.href = getContextPath()
 										</c:forEach>
 									</c:when>
 								</c:choose>
-
-
 							</select>
 						</div>
 					</div>
