@@ -1471,15 +1471,15 @@ function showTable(previousYear,latestYear){
 											
 											'<tr>' + '<td style="text-align: center;">' +animalData[increment].animalName + '</td>'  
 												+ '<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalCount" onchange="highLightChange();" name="'+(animalIndex+1)+'animalCount" size="8"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalCount" onchange="highLightChange();" name="'+(animalIndex+1)+'animalCount" size="8"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right;background-color: #e2ffdc"'
 												+ ' value="'+checkForZero(formatNumber(animalData[increment].animalCount))+'"> </td>'
 												+ '<td style="text-align: right;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+checkForZero((animalData[increment].nonForageRate)*100)+'"> </td>' 
 												+'<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+checkForZero(animalData[increment].energyUnitIndex)+'"> </td>' +	 '<td style="text-align: right;background-color: #ffeae9" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein">'
 												+ animalData[increment].proteinUnitIndex + '</td>' 
@@ -1506,16 +1506,16 @@ function showTable(previousYear,latestYear){
 										.append(
 												'<tr>' + '<td style="text-align: center;">' + animalData[increment].animalName + '</td>'  
 												+ '<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+checkForZero(formatNumber(animalData[increment].animalCount))+'"> </td>'
 												+ '<td style="text-align: right;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+checkForZero((animalData[increment].nonForageRate)*100)+'"> </td>' + '<td style="text-align:right; background-color: #ffeae9" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy">'
 												+ animalData[increment].energyUnitIndex + '</td>' 
 												+ '<td style="text-align: right; ">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+checkForZero(animalData[increment].proteinUnitIndex)+'"> </td>' 
 												+ '<td style="text-align: right; background-color: #D0E3FF" id="'+(animalIndex+1)+'feedDemand">'
@@ -1865,15 +1865,15 @@ function showTable(previousYear,latestYear){
 										
 											'<tr>' + '<td style="text-align: center;">' +animalData[increment].animalName + '</td>'  
 												+ '<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right;background-color: #e2ffdc"'
 												+ ' value="'+formatNumber(changedAnimalCount)+'"> </td>'
 												+ '<td style="text-align: right;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+changedNonForageRate+'"> </td>' 
 												+'<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+changedEnergyUnitIndex+'"> </td>' +	 '<td style="text-align: right;background-color: #ffeae9" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein">'
 												+ animalData[increment].proteinUnitIndex + '</td>' 
@@ -1903,16 +1903,16 @@ function showTable(previousYear,latestYear){
 										.append(
 												'<tr>' + '<td style="text-align: center;">' + animalData[increment].animalName + '</td>'  
 												+ '<td style="text-align: center;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalCount" name="'+(animalIndex+1)+'animalCount" size="8" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+formatNumber(changedAnimalCount)+'"> </td>'
 												+ '<td style="text-align: right;">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalNfg" name="'+(animalIndex+1)+'animalNfg" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+changedNonForageRate+'"> </td>' + '<td style="text-align:right; background-color: #ffeae9" id="'+(animalIndex+1)+'animalEnergy" name="'+(animalIndex+1)+'animalEnergy">'
 												+ animalData[increment].energyUnitIndex + '</td>' 
 												+ '<td style="text-align: right; ">'
-												+ '<input type="text" onkeypress="return validate(event)" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein" size="6" onchange="highLightChange();"'
+												+ '<input type="text" onkeypress="return validate(event,this)" id="'+(animalIndex+1)+'animalProtein" name="'+(animalIndex+1)+'animalProtein" size="6" onchange="highLightChange();"'
 												+ 'maxlength="20" class="form-control" style="font-weight:bold ;text-align: right; background-color: #e2ffdc"'
 												+ ' value="'+changedProteinUnitIndex+'"> </td>' 
 												+ '<td style="text-align: right; background-color: #D0E3FF" id="'+(animalIndex+1)+'feedDemand">'
@@ -1994,12 +1994,25 @@ function showTable(previousYear,latestYear){
 				}
 }	
 
-function validate(evt) {
-   var charCode = (evt.which) ? evt.which : event.keyCode
-         if (charCode > 31 && (charCode < 48 || charCode > 57))
+function validate(evt,idCode) {
+	var val = document.getElementById(idCode.id);
+		 var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode!=46)
             return false;
+		 else{
+			if(charCode==46)
+				{
+				if(val.value.split('.').length > 1){
+						return false;
+					}
+				}		
+			else {	
+			return true;	
+			}
+		 }
 
-         return true;
+         
+	 
 }
 
 
@@ -4549,7 +4562,6 @@ window.location.href = getContextPath()
 							perChngUtIdxList=perChngUtIdx.split(":");
 							
 							for ( var animalIndex = 0; animalIndex < arrayAnimalName.length; animalIndex++) {
-									
 									if( perChngAnmCountList[animalIndex] != 0 ||
 										perChngNonForgRatList[animalIndex] != 0 ||
 										perChngUtIdxList[animalIndex] != 0
@@ -4565,12 +4577,12 @@ window.location.href = getContextPath()
 										
 										*/
 										else if(perChngAnmCountList[animalIndex] > 0){
-                                            changeValue= 'Increase by '+perChngAnmCountList[animalIndex];
+                                            changeValue= 'Increase by '+ parseFloat(perChngAnmCountList[animalIndex]).toFixed(2);
                                         
 										}
 										
 										 else if(perChngAnmCountList[animalIndex] <0){
-										changeValue= 'Decrease by '+(-1)*perChngAnmCountList[animalIndex];
+										changeValue= 'Decrease by '+(-1)*parseFloat(perChngAnmCountList[animalIndex]).toFixed(2);
                                         
 										}
 										
@@ -4585,10 +4597,10 @@ window.location.href = getContextPath()
 											changeValue1="No significant change" ;
 										}*/
                                           else if(perChngNonForgRatList[animalIndex]>0 )
-										  {changeValue1='Increase by '+ perChngNonForgRatList[animalIndex];
+										  {changeValue1='Increase by '+ parseFloat(perChngNonForgRatList[animalIndex]).toFixed(2);
 										  }
 										  else if(perChngNonForgRatList[animalIndex] < 0 ){
-											  changeValue1='Decrease by '+(-1)*perChngNonForgRatList[animalIndex];
+											  changeValue1='Decrease by '+(-1)*parseFloat(perChngNonForgRatList[animalIndex]).toFixed(2);
 										  }
 										  
 										 
@@ -4602,10 +4614,10 @@ window.location.href = getContextPath()
 										  }
 										  */
 										  else if(perChngUtIdxList[animalIndex]>0) {
-											  changeValue2='Increase by '+perChngUtIdxList[animalIndex];
+											  changeValue2='Increase by '+parseFloat(perChngUtIdxList[animalIndex]).toFixed(2);
 										  }
 										  else if(perChngUtIdxList[animalIndex]<0){
-											  changeValue2='Decrease by '+(-1)*perChngUtIdxList[animalIndex];
+											  changeValue2='Decrease by '+(-1)*parseFloat(perChngUtIdxList[animalIndex]).toFixed(2);
 										  }
 										  
 										  
@@ -4620,7 +4632,9 @@ window.location.href = getContextPath()
 										noChange=1;
 									}
 							}
-							
+						$('#collapseChangeInfoTable')
+											.append(
+											'<tr><th style="text-align: center;" colspan="5" style="color: lightseagreen"> 0.00 means that the proposed percentage change is smaller than 0.01</th></tr>');			
 				}
 				else{
 					$('#collapseTable').prepend(
